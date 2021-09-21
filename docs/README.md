@@ -11,4 +11,4 @@ Use Jenkins to automate your development workflow, so you can focus on work that
 
 ## Jenkins Simple Theme Plugin
 
-[![theme](jenkins-material-theme)](https://github.com/afonsof/jenkins-material-theme)
+[jenkins-material-theme](https://github.com/afonsof/jenkins-material-theme)
