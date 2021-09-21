@@ -1,0 +1,6 @@
+namespace: jenkins
+resources:
+  - pvc.yaml
+  - services.yaml
+  - jenkins.yaml
+  - config.yaml

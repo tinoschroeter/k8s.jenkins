@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations: 
+    backup.velero.io/backup-volumes: jenkins-pvc
+  labels:
+    app: jenkins-app
+  name: jenkins-app
+  namespace: jenkins
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkins-app
+  template:
+    metadata:
+      labels:
+        app: jenkins-app
+    spec:
+      containers:
+      - name: jenkins-app
+        image: registry.tino.sh/jenkins
+        resources:
+          requests:
+            memory: "300Mi"
+            cpu: "300m"
+          limits:
+            memory: "640Mi"
+            cpu: "2000m"
+        volumeMounts:
+        - name: volv
+          mountPath: /var/jenkins_home
+        ports:
+        - containerPort: 80
+      volumes:
+      - name: volv
+        persistentVolumeClaim:
+          claimName: jenkins-pvc
