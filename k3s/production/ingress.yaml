@@ -1,20 +1,24 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
   name: jenkins-ingress
   namespace: jenkins
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-    ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   rules:
   - host: jenkins.tino.sh
     http:
       paths:
-      - backend:
-          serviceName: jenkins-service
-          servicePort: 7777
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: jenkins-service
+            port: 
+              number: 7777
   tls:
   - hosts:
     - jenkins.tino.sh
