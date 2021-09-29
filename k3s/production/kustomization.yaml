@@ -2,5 +2,4 @@
 bases:
   - ../base
   - backup.yaml
-patches:
   - ingress.yaml
