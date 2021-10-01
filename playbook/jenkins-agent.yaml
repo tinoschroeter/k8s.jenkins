@@ -1,0 +1,110 @@
+- hosts: jenkins-agent
+  become: yes
+  tasks:
+  - name: download Docker Installer
+    ansible.builtin.get_url:
+      url: https://get.docker.com
+      dest: /tmp/docker.sh
+
+  - name: Run Docker install script
+    ansible.builtin.shell:
+      cmd: cat /tmp/docker.sh | sh -s -- -y
+
+  - name: Open Docker remote Port
+    ansible.builtin.template:
+      src: templates/options.conf.j2
+      dest: /etc/systemd/system/docker.service.d/options.conf
+      owner: root
+      group: root
+      mode: u=rw,g=r,o=r
+
+  - name: Reload Docker Service
+    ansible.builtin.service:
+      name: docker
+      state: reloaded
+
+  - name: install wiringpi
+    apt:
+      name: wiringpi
+      state: present
+
+  - name: install blink.sh
+    ansible.builtin.template:
+      src: templates/blink.sh.j2
+      dest: /opt/blink.sh
+      owner: root
+      group: root
+      mode: u=rwx,g=xr,o=x
+
+  - name: add blink.sh service
+    ansible.builtin.template:
+      src: templates/blink.service.j2
+      dest: /etc/systemd/system/blink.service
+      owner: root
+      group: root
+      mode: u=rw,g=r,o=r
+
+  - name: Start blink.sh service
+    ansible.builtin.service:
+      name: blink
+      enabled: yes
+      state: started
+
+  - name: install apt-transport-https
+    apt:
+      name: apt-transport-https
+      state: present
+
+  - name: install ca-certificates
+    apt:
+      name: ca-certificates
+      state: present
+
+  - name: Download JDK 11
+    ansible.builtin.get_url:
+      url: https://github.com/bell-sw/Liberica/releases/download/11.0.11%2B9/bellsoft-jdk11.0.11+9-linux-aarch64-full.deb
+      dest: /tmp/bellsoft-jdk11.deb
+
+  - name: Install JDK 11
+    ansible.builtin.shell:
+      cmd: dpkg -i /tmp/bellsoft-jdk11.deb
+
+  - name: Add Jenkins user
+    ansible.builtin.user:
+      name: jenins
+      comment: Jenkins
+      uid: 1040
+      groups: docker
+
+  - name: Install skaffold
+    ansible.builtin.get_url:
+      url: https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-arm64
+      dest: /usr/local/bin/skaffold
+
+  - name: Install kubectl
+    ansible.builtin.get_url:
+      url: https://dl.k8s.io/release/v1.22.0/bin/linux/arm64/kubectl
+      dest: /usr/local/bin/kubectl
+
+  - name: make skaffold executable
+    ansible.builtin.file:
+      path: /usr/local/bin/skaffold
+      owner: root
+      group: root
+      mode: '0755'
+
+  - name: make kubectl executable
+    ansible.builtin.file:
+      path: /usr/local/bin/kubectl
+      owner: root
+      group: root
+      mode: '0755'
+
+  - name: install nodejs
+    apt:
+      name: nodejs
+      state: present
+
+  - name: install snyk
+    ansible.builtin.shell:
+      cmd: npm install -g snyk

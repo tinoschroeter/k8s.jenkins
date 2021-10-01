@@ -1,0 +1,11 @@
+[Unit]
+Description=Gewitter blink 
+
+[Service]
+Type=simple
+ExecStart=/opt/blink.sh
+ExecStartPre=/opt/blink.sh init
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

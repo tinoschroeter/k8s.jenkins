@@ -1,0 +1,7 @@
+---
+all:
+  hosts:
+    jenkins-agent:
+      ansible_host: cloud.home.lan
+  vars:
+    ansible_user: ubuntu

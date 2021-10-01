@@ -1,0 +1,38 @@
+#!/bin/bash
+#apt install wiringpi
+#systemctl enable blink.service
+#set -x
+
+declare -a pin=("3" "4" "5" "6" "28" "29")
+
+flash() {
+for i in {1..20}; do
+    index=$(($RANDOM % 6)) 
+    gpio write ${pin[$index]} 1
+    sleep 0.06
+    gpio write ${pin[$index]} 0
+    sleep 0.008
+done
+}
+
+if [ "$1" == "init" ]; then
+    for i in {0..33};do
+      gpio export $i out
+      done
+    echo "done..."
+    exit 0;
+fi
+
+if [ "$1" == "test" ]; then
+  flash
+  exit 0;
+fi
+while :; do
+    toInt=$(ps ax|grep 'home/jenkins/workspace'|grep -v 'grep'|wc -l)
+
+if [[ $toInt != 0 ]];then
+  flash
+  continue
+fi
+sleep 2
+done
