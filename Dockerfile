@@ -1,6 +1,6 @@
 FROM ubuntu:groovy AS jenkins
 
-RUN apt update && apt dist-upgrade -y
+RUN apt update  && apt dist-upgrade -y
 
 RUN apt install apt-utils wget vim apt-transport-https ca-certificates curl gnupg -y
 
