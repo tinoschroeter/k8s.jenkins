@@ -1,6 +1,15 @@
 - hosts: jenkins-agent
+  gather_facts: no
   become: yes
   tasks:
+  - name: Set a hostname
+    ansible.builtin.hostname:
+      name: cloud
+
+  - name: Set timezone to Europe/Berlin
+    community.general.timezone:
+      name: Europe/Berlin
+
   - name: download Docker Installer
     ansible.builtin.get_url:
       url: https://get.docker.com
@@ -8,7 +17,12 @@
 
   - name: Run Docker install script
     ansible.builtin.shell:
-      cmd: cat /tmp/docker.sh | sh -s -- -y
+      cmd: ls /etc/docker || cat /tmp/docker.sh | sh -s -- -y
+
+  - name: Creates Docker Service directory
+    file:
+      path: /etc/systemd/system/docker.service.d
+      state: directory
 
   - name: Open Docker remote Port
     ansible.builtin.template:
@@ -23,7 +37,31 @@
       name: docker
       state: reloaded
 
-  - name: install wiringpi
+  - name: Install utility packages
+    apt:
+      state: present
+      name: 
+        - net-tools 
+        - vim
+        - jq
+        - htop 
+        - dstat
+        - curl 
+        - unattended-upgrades 
+        - neofetch 
+        - dnsutils 
+        - git 
+        - sysstat 
+        - iotop 
+        - python3-pip 
+        - nfs-common
+        - libxrender1
+
+  - name: Install AWS CLI
+    pip:
+      name: awscli
+
+  - name: Install wiringpi
     apt:
       name: wiringpi
       state: present
@@ -102,7 +140,9 @@
 
   - name: install nodejs
     apt:
-      name: nodejs
+      name: 
+      - nodejs
+      - npm
       state: present
 
   - name: install snyk
