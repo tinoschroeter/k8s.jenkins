@@ -15,3 +15,12 @@ Use Jenkins to automate your development workflow, so you can focus on work that
 ## Jenkins Simple Theme Plugin
 
 [jenkins-material-theme](https://github.com/afonsof/jenkins-material-theme)
+
+## Plugins
+
+* Blue Ocean
+* Embeddable Build Status
+* greenballs
+* prometheus
+* Slack Notification
+* configuration-as-code
