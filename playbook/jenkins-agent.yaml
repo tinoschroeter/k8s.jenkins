@@ -109,7 +109,7 @@
 
   - name: Add Jenkins user
     ansible.builtin.user:
-      name: jenins
+      name: jenkins
       comment: Jenkins
       uid: 1040
       groups: docker

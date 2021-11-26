@@ -25,3 +25,14 @@ Use Jenkins to automate your development workflow, so you can focus on work that
 * prometheus
 * Slack Notification
 * configuration-as-code
+
+## playbook
+```bash
+$ ansible-playbook jenkins-agent.yaml -i inventory.yaml
+```
+
+## Case
+
+[Raspberry Pi Cloud Case](https://www.thingiverse.com/thing:2267702)
+
+![jenkinsAgent](https://raw.githubusercontent.com/tinoschroeter/k8s.jenkins/master/docs/cloud.gif)
