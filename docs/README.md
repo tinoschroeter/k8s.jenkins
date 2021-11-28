@@ -34,8 +34,8 @@ $ ansible-playbook jenkins-agent.yaml -i inventory.yaml
 
 ## Jenkins Agent Case
 
-[Raspberry Pi Cloud Case](https://www.thingiverse.com/thing:2267702)
-[blink.sh](https://github.com/tinoschroeter/k8s.jenkins/blob/master/playbook/templates/blink.sh.j2)
+* [Raspberry Pi Cloud Case](https://www.thingiverse.com/thing:2267702)
+* [blink.sh](https://github.com/tinoschroeter/k8s.jenkins/blob/master/playbook/templates/blink.sh.j2)
 
 Running Build jobs trigger thunderstorm simulation.
 
