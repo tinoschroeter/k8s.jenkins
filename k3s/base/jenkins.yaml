@@ -25,8 +25,8 @@ spec:
             memory: "300Mi"
             cpu: "300m"
           limits:
-            memory: "640Mi"
-            cpu: "2000m"
+            memory: "1024Mi"
+            cpu: "2200m"
         volumeMounts:
         - name: volv
           mountPath: /var/jenkins_home
