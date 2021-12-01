@@ -1,8 +1,7 @@
 FROM ubuntu:groovy AS jenkins
 
-RUN apt update  && apt dist-upgrade -y
-
-RUN apt install apt-utils wget vim apt-transport-https ca-certificates curl gnupg -y
+RUN apt update  && apt dist-upgrade -y && \
+apt install apt-utils wget vim apt-transport-https ca-certificates curl gnupg -y
 
 # Install java11
 RUN wget https://github.com/bell-sw/Liberica/releases/download/11.0.11%2B9/bellsoft-jdk11.0.11+9-linux-aarch64.deb
