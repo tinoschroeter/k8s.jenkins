@@ -1,8 +1,8 @@
 FROM ubuntu:groovy AS jenkins
 LABEL build_date="2021-12-01"
 
-RUN apt-get install apt-utils=2.1.10ubuntu0.3 wget=1.20.3-1ubuntu1 apt-transport-https=2.1.10ubuntu0.3 \
-ca-certificates=20210119~20.10.1 curl=7.68.0-1ubuntu4.3 gnupg=2.2.20-1ubuntu1.1 -y --no-install-recommends
+RUN apt-get install apt-utils wget apt-transport-https \
+ca-certificates curl gnupg -y --no-install-recommends
 
 # Install java11
 RUN wget https://github.com/bell-sw/Liberica/releases/download/11.0.11%2B9/bellsoft-jdk11.0.11+9-linux-aarch64.deb
@@ -19,7 +19,7 @@ RUN echo "deb https://pkg.jenkins.io/debian-stable binary/" > /etc/apt/sources.l
 RUN apt-get update && \
 rm -rf /var/lib/apt/lists/*
 
-RUN apt-get install jenkins=2.319.1 -y --no-install-recommends
+RUN apt-get install jenkins -y --no-install-recommends
 
 RUN echo "Password"
 #RUN cat /var/lib/jenkins/secrets/initialAdminPassword
