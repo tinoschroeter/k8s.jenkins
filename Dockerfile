@@ -12,7 +12,7 @@ RUN rm bellsoft-jdk11.0.11+9-linux-aarch64.deb
 RUN update-alternatives --config javac
 RUN update-alternatives --config java
 
-RUN sh -o pipefail 'wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key |  apt-key add -'
+RUN wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key |  apt-key add -
 
 RUN echo "deb https://pkg.jenkins.io/debian-stable binary/" > /etc/apt/sources.list.d/jenkins.list
 
