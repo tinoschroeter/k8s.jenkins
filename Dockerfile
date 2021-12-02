@@ -1,6 +1,6 @@
 FROM ubuntu:groovy AS jenkins
 
-RUN apt-get install apt-utils wget=1.20.3-1ubuntu1 apt-transport-https=2.1.10ubuntu0.3 \
+RUN apt-get install apt-utils=2.1.10ubuntu0.3 wget=1.20.3-1ubuntu1 apt-transport-https=2.1.10ubuntu0.3 \
 ca-certificates=20210119~20.10.1 curl=7.68.0-1ubuntu4.3 gnupg=2.2.20-1ubuntu1.1 -y --no-install-recommends
 
 # Install java11
