@@ -17,9 +17,7 @@ RUN wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key |  apt-key add -
 RUN echo "deb https://pkg.jenkins.io/debian-stable binary/" > /etc/apt/sources.list.d/jenkins.list
 
 RUN apt-get update && \
-rm -rf /var/lib/apt/lists/*
-
-RUN apt-get install jenkins -y --no-install-recommends
+ apt-get install jenkins -y --no-install-recommends
 
 RUN echo "Password"
 #RUN cat /var/lib/jenkins/secrets/initialAdminPassword
