@@ -1,6 +1,6 @@
 FROM ubuntu:groovy AS jenkins
 
-RUN apt-get update  && apt-get dist-upgrade -y && \
+RUN apt-get update  && apt-get upgrade -y && \
 apt-get install apt-utils wget vim apt-transport-https ca-certificates curl gnupg -y
 
 # Install java11
