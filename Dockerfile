@@ -1,7 +1,6 @@
 FROM ubuntu:groovy AS jenkins
 
-RUN apt-get update  && apt-get upgrade -y && \
-apt-get install apt-utils wget vim apt-transport-https ca-certificates curl gnupg -y
+RUN apt-get install apt-utils wget vim apt-transport-https ca-certificates curl gnupg -y --no-install-recommends
 
 # Install java11
 RUN wget https://github.com/bell-sw/Liberica/releases/download/11.0.11%2B9/bellsoft-jdk11.0.11+9-linux-aarch64.deb
@@ -15,9 +14,10 @@ RUN sh -o pipefail 'wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | 
 
 RUN echo "deb https://pkg.jenkins.io/debian-stable binary/" > /etc/apt/sources.list.d/jenkins.list
 
-RUN apt-get update
+RUN apt-get update && \
+rm -rf /var/lib/apt/lists/*
 
-RUN apt-get install jenkins -y
+RUN apt-get install jenkins -y --no-install-recommends
 
 RUN echo "Password"
 #RUN cat /var/lib/jenkins/secrets/initialAdminPassword
