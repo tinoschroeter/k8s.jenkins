@@ -1,7 +1,7 @@
 FROM ubuntu:groovy AS jenkins
 LABEL build_date="2021-12-01"
 
-RUN apt-get install apt-utils wget apt-transport-https \
+RUN apt update && apt-get install apt-utils wget apt-transport-https \
 ca-certificates curl gnupg -y --no-install-recommends
 
 # Install java11
