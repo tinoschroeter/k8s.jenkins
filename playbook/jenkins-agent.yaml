@@ -37,6 +37,14 @@
       name: docker
       state: reloaded
 
+  - name: docker-clean-up
+    ansible.builtin.template:
+      src: templates/docker-clean-up.j2
+      dest: /etc/cron.d/docker-clean-up
+      owner: root
+      group: root
+      mode: u=rwx,g=rx,o=r
+
   - name: Install utility packages
     apt:
       state: present
