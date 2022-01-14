@@ -1,5 +1,5 @@
 FROM ubuntu:groovy AS jenkins
-LABEL build_date="2021-12-01"
+LABEL build_date="2022-01-14"
 
 RUN apt update && apt-get install apt-utils wget apt-transport-https \
 ca-certificates curl gnupg -y --no-install-recommends
@@ -32,7 +32,6 @@ ENV JENKINS_HOME=/var/jenkins_home
 ENV JENKINS_SLAVE_AGENT_PORT=50000
 
 #USER [jenkins]
-
 COPY /backend/start.sh /bin
 RUN chmod +x /bin/start.sh
 
