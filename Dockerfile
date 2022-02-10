@@ -1,8 +1,8 @@
 FROM ubuntu:20.04 AS jenkins
-LABEL build_date="2022-01-14"
+LABEL build_date="2022-02-10"
 
 RUN apt-get update && apt-get install apt-utils wget apt-transport-https \
-ca-certificates curl gnupg -y --no-install-recommends
+    ca-certificates curl gnupg -y --no-install-recommends
 
 # Install java11
 RUN wget https://github.com/bell-sw/Liberica/releases/download/11.0.11%2B9/bellsoft-jdk11.0.11+9-linux-aarch64.deb

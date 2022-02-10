@@ -65,6 +65,8 @@
         - nfs-common
         - libxrender1
         - prometheus-node-exporter
+        - libxi6
+        - libxtst6
 
   - name: Install AWS CLI
     pip:

@@ -2,6 +2,6 @@
 all:
   hosts:
     jenkins-agent:
-      ansible_host: cloud.home.lan
+      ansible_host: 10.0.1.60
   vars:
     ansible_user: ubuntu
