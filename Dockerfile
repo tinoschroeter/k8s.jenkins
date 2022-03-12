@@ -22,9 +22,6 @@ RUN apt-get update && \
 RUN echo "Password"
 #RUN cat /var/lib/jenkins/secrets/initialAdminPassword
 
-# fix: Unable to access jarfile
-RUN chown jenkins /usr/share/jenkins/jenkins.war
-
 ARG user=jenkins
 ARG group=jenkins
 ARG uid=1000
