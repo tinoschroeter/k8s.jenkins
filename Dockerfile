@@ -23,7 +23,7 @@ RUN echo "Password"
 #RUN cat /var/lib/jenkins/secrets/initialAdminPassword
 
 # fix: Unable to access jarfile
-RUN chmod jenkins /usr/share/jenkins/jenkins.war
+RUN chown jenkins /usr/share/jenkins/jenkins.war
 
 ARG user=jenkins
 ARG group=jenkins
