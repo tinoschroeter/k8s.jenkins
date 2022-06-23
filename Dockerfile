@@ -1,5 +1,5 @@
 FROM ubuntu:20.04 AS jenkins
-LABEL build_date="2022-06-08"
+LABEL build_date="2022-06-23"
 
 RUN apt-get update && apt-get install apt-utils wget \
     apt-transport-https ca-certificates curl gnupg -y --no-install-recommends
