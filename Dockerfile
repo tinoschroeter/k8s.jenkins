@@ -1,4 +1,4 @@
-FROM ubuntu:20.04 AS jenkins
+FROM ubuntu:latest AS jenkins
 LABEL build_date="2022-10-02"
 
 RUN apt-get update && apt-get install apt-utils wget \
